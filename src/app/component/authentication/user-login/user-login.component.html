@@ -1,54 +1,20 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="medium-list">
-  <mat-card style="box-shadow: 1px 2px 4px 2px; background-color: whitesmoke;">
-    <mat-card-title
-      class="row threed"
-      style="
-        align-content: center;
-        font-style: unset;
-        font-size: 60vp;
-        background-color: rgb(241, 234, 234);
-        font-variant: normal;
-        text-align: center;
-        text-transform: capitalize;
-        text-decoration-style: wavy;
-      "
-    >
+  <mat-card
+    style="
+      box-shadow: 1px 2px 4px 2px;
+      width: 400px;
+      background-color: whitesmoke;
+    "
+  >
+    <mat-card-title class="rowthreed">
       <h2>Book Store</h2>
     </mat-card-title>
     <form [formGroup]="loginForm" (ngSubmit)="(loginForm.valid)" noval>
       <mat-card-content fxLayout="column">
-        <div class="social-login">
-          <div style="margin-right: 20px;">
-            <a
-              ><img
-                src="assets\FbLogin.png"
-                style="
-                  color: rgb(8, 8, 8);
-                  height: 60px;
-                  width: 60px;
-                  border-radius: 55%;
-                  border: 3px solid;
-                "
-            /></a>
-          </div>
-          <div>
-            <a
-              ><img
-                src="assets\Google__G__Logo.svg"
-                style="
-                  color: black;
-                  height: 60px;
-                  width: 60px;
-                  border-radius: 50%;
-                  border: 2px solid;
-                "
-            /></a>
-          </div>
-        </div>
         <mat-card-subtitle
           style="
             font-style: unset;
-            margin-bottom: -1.5em;
+            margin-bottom: -2.5em;
             color: rgb(146, 144, 144);
             text-align: center;
             text-transform: capitalize;
@@ -70,7 +36,7 @@
 
         <mat-form-field
           class="form-container rupesh"
-          style="margin-bottom: -1.25em;"
+          style="margin-bottom: -2.25em;"
         >
           <mat-icon matPrefix matPrefix style="margin-right: 20px;">
             mail_outline</mat-icon
@@ -85,7 +51,7 @@
             required
           />
         </mat-form-field>
-        <span style="font-size: 15px; margin-top: 10px;">
+        <span style="font-size: 15px; margin-top: 10px; margin-left: 23px;">
           <mat-error
             *ngIf="f.email.touched && f.email.errors"
             class="invalid-feedback"
@@ -123,7 +89,13 @@
         <div class="login-button">
           <button
             [disabled]="!loginForm.valid"
-            style="font-size: 20px; font-weight: bold; color: whitesmoke;"
+            style="
+              border-radius: 10px;
+              outline: none;
+              font-size: 20px;
+              font-weight: 500;
+              color: whitesmoke;
+            "
             mat-button
             type="submit"
             class="divider"
@@ -135,7 +107,13 @@
         <div>
           <button
             [disabled]="!loginForm.valid"
-            style="font-size: 20px; font-weight: bold; color: whitesmoke;"
+            style="
+              border-radius: 10px;
+              outline: none;
+              font-size: 20px;
+              font-weight: 500;
+              color: whitesmoke;
+            "
             mat-button
             class="divider"
             (click)="onAdminLoginSubmit()"

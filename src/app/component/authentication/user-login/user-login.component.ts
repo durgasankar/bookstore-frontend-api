@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { User } from "src/app/shared/model/user.model";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { NgxSpinnerService } from "ngx-spinner";
 import { UserService } from "src/app/shared/service/user.service";
 import { Router } from "@angular/router";
@@ -17,6 +17,7 @@ export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
   userPage = "user";
+  page;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -48,11 +49,11 @@ export class UserLoginComponent implements OnInit {
         this.matSnackBar.open("Successfully Loged In Wellcome", "ok", {
           duration: 5000,
         });
-
-        sessionStorage.setItem("token", response.token);
-        sessionStorage.setItem("lastName", response.lastName);
-        sessionStorage.setItem("firstName", response.firstName);
-        this.router.navigate(["dashboard", 1]);
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("lastName", response.lastName);
+        localStorage.setItem("firstName", response.firstName);
+        localStorage.setItem("isLogin", "true");
+        this.router.navigate(["dashboard/user"]);
         this.showSpinner = false;
       },
       (error: any) => {
@@ -71,10 +72,11 @@ export class UserLoginComponent implements OnInit {
         this.matSnackBar.open("Successfully Loged In Wellcome", "ok", {
           duration: 5000,
         });
-        sessionStorage.setItem("token", response.token);
-        sessionStorage.setItem("lastName", response.lastName);
-        sessionStorage.setItem("firstName", response.firstName);
-        this.router.navigate(["dashboard", 2]);
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("lastName", response.lastName);
+        localStorage.setItem("firstName", response.firstName);
+        localStorage.setItem("isLogin", "true");
+        this.router.navigate(["dashboard/seller"]);
         this.showSpinner = false;
       },
       (error: any) => {
@@ -85,6 +87,7 @@ export class UserLoginComponent implements OnInit {
       }
     );
   }
+
   get f() {
     return this.loginForm.controls;
   }

@@ -4,14 +4,20 @@
   margin-top: 1%;
   margin-left: 10%;
   height: auto;
-  overflow-y: hidden;
   margin-right: 10%;
   justify-content: space-between;
+}
+.bottom {
+  background-color: black;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  bottom: 0px;
+  width: 100%;
 }
 .main-container {
   height: 100%;
   width: 100%;
-  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -26,7 +32,7 @@
 .title {
   font-size: 25px;
   font-weight: bolder;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, Regular;
   align-items: flex-start;
   margin-top: 10px;
 }
@@ -41,11 +47,11 @@
   position: relative;
   flex-wrap: wrap;
   flex-direction: row;
+
   justify-content: center;
   align-items: center;
   // z-index: 3001;
 }
-
 mat-card {
   display: flex;
   flex-wrap: wrap;
@@ -59,11 +65,12 @@ mat-card {
   padding: 0px;
 }
 mat-card-title {
-  background-color: rgb(231, 230, 230);
-  height: 180px auto;
+  background: #f5f5f5 0% 0% no-repeat padding-box;
 }
 .mat-card-title.mat-card-title {
   display: flex;
+  height: 171px auto;
+  width: 233px;
   align-items: center;
   align-content: center;
 }
@@ -72,30 +79,30 @@ mat-card-title {
   margin-bottom: 7px;
   font-size: large;
   font-weight: bolder;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-family: Lato, Regular;
 }
 .authorname {
   margin-left: 20px;
   margin-bottom: 7px;
-  font-size: medium;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-family: Lato, Regular;
   color: gray;
 }
 .price {
   margin-left: 20px;
-  margin-bottom: 12px;
-  font-size: medium;
-  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-family: Lato, Regular;
   font-weight: bolder;
   color: rgb(8, 8, 8);
 }
 .availablity {
   margin-left: 20px;
   margin-bottom: 12px;
-  font-size: medium;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
-  color: rgb(184, 5, 5);
+  font-size: 13px;
+  font-family: Lato;
+  color: rgba(87, 25, 25, 0.904);
 }
 .cart-buttons {
   display: flex;
@@ -111,18 +118,20 @@ mat-card-title {
   width: 120px;
   margin-left: 10px;
   color: white;
-  background-color: rgba(131, 4, 4, 0.829);
+  background-color: rgba(87, 25, 25, 0.904);
 }
 .addtobag {
   color: white;
-  background-color: rgba(131, 4, 4, 0.829);
+  background-color: #a03037;
   height: 35px;
   width: auto;
   border: none;
+  cursor: pointer;
 }
 .wishlist {
   height: 35px;
   margin-left: 10px;
   width: auto;
   background-color: white;
+  cursor: pointer;
 }

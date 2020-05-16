@@ -1,18 +1,6 @@
 <div class="medium-list" fxLayoutAlign="center center">
   <mat-card style="box-shadow: 1px 1px 1px 2px lightgray; opacity: 0.8;">
-    <mat-card-title
-      class="row threed"
-      style="
-        align-content: center;
-        font-style: unset;
-        font-size: 60vp;
-        background-color: rgb(241, 234, 234);
-        font-variant: normal;
-        text-align: center;
-        text-transform: capitalize;
-        text-decoration-style: wavy;
-      "
-    >
+    <mat-card-title class="rowthreed">
       <h2>Sign Up</h2>
     </mat-card-title>
     <form [formGroup]="registerForm" (ngSubmit)="(registerForm.valid)" noval>
@@ -253,7 +241,13 @@
         <mat-card-actions class="button-container" align="end">
           <div>
             <button
-              style="font-size: 20px; font-weight: bold; color: whitesmoke;"
+              style="
+                border-radius: 10px;
+                outline: none;
+                font-size: 20px;
+                font-weight: 500;
+                color: whitesmoke;
+              "
               [disabled]="!registerForm.valid"
               mat-button
               type="submit"
@@ -265,7 +259,13 @@
           </div>
           <div>
             <button
-              style="font-size: 20px; font-weight: bold; color: whitesmoke;"
+              style="
+                border-radius: 10px;
+                outline: none;
+                font-size: 20px;
+                font-weight: 500;
+                color: whitesmoke;
+              "
               [disabled]="!registerForm.valid"
               mat-button
               type="submit"

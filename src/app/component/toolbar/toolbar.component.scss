@@ -1,129 +1,200 @@
-.logo {
-  height: 40px;
-  width: 60px;
-  padding-top: 13px;
-  padding-right: 20px;
-  padding-left: 20px;
-  opacity: 0.9;
-  padding-left: 10%;
-}
-.title {
-  display: inline-block;
-  font-family: "Product Sans", Arial, sans-serif;
-  color: rgb(255, 254, 254);
-  font-size: 25px;
-  font-weight: bolder;
-  padding-top: 1rem;
-  line-height: 24px;
-  padding-right: 80px;
-}
-.container {
-  display: flex;
-  flex-direction: row;
-  //   height: 100%;
-}
-mat-card {
-  display: flex;
-  flex-direction: row;
-  padding-top: 40px;
-  height: 1em;
-  width: auto;
-}
-mat-card.mat-card {
-  height: 8px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: center;
-}
-div.searchbar {
-  margin-left: 10%;
-  height: auto;
-  width: auto;
-  border-width: 1px;
-  border-color: slategrey;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// .logo {
+//   height: 40px;
+//   width: 60px;
+//   padding-top: 13px;
+//   padding-right: 20px;
+//   padding-left: 60px;
+//   opacity: 0.9;
+// }
+// .title {
+//   display: inline-block;
+//   font-family: "Product Sans", Arial, sans-serif;
+//   color: rgb(255, 254, 254);
+//   font-size: 25px;
+//   font-weight: bolder;
+//   padding-top: 1rem;
+//   line-height: 24px;
+//   padding-right: 80px;
+// }
+// .container {
+//   display: flex;
+//   flex-direction: row;
+//   //   height: 100%;
+// }
+// mat-card {
+//   display: flex;
+//   flex-direction: row;
+//   padding-top: 40px;
+//   height: 1em;
+//   width: auto;
+// }
+// mat-card.mat-card {
+//   height: 8px;
+//   margin-top: 20px;
+//   margin-bottom: 10px;
+//   align-items: center;
+//   justify-content: center;
+// }
+// div.searchbar {
+//   margin-left: 10%;
+//   height: auto;
+//   width: auto;
+//   border-width: 1px;
+//   border-color: slategrey;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .searchboxinput {
+//   display: flex;
+//   box-shadow: none;
+//   border: 2px silver;
+//   font-size: 20px;
+//   justify-content: center;
+//   align-items: center;
+
+//   padding-left: 30px;
+// }
+// .searchicon {
+//   margin-bottom: 20px;
+//   color: rgb(92, 91, 91);
+// }
+
+// input {
+//   outline: none;
+//   border: none;
+//   margin-bottom: 20px;
+//   height: 10px;
+//   padding: 0;
+//   justify-content: center;
+//   align-items: center;
+// }
+// input:placeholder-shown {
+//   font-size: 18px;
+// }
+// div.searchbar:focus {
+//   box-shadow: 0 2px 12px 0 rgba(88, 49, 49, 0.16),
+//     0 0 0 1px rgba(29, 16, 145, 0.08);
+// }
+
+// .div-profile {
+//   height: 100px;
+//   width: 280px;
+//   // overflow-y: auto;
+//   // overflow-x: hidden;
+// }
+
+// .div-signout {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// .signout-button {
+//   border: 1px solid gray;
+// }
+// .image-upload > input {
+//   display: none;
+// }
+// div.mat-menu-content {
+//   z-index: 3000;
+// }
+// .div-profilepic {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 130px;
+//   width: auto;
+//   margin-top: 12px;
+// }
+// .mat-menu {
+//   z-index: -1;
+// }
+// .mat-menu-content {
+//   background-color: "red" !important;
+// }
+// .profile-content {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// h3 {
+//   display: flex;
+//   justify-content: center;
+// }
+// .last-icon {
+//   display: flex;
+//   justify-content: flex-end;
+// }
+
+// my own
+
+.mat-title {
+  color: #fff;
+  margin: 0;
+  padding-top: 5px;
 }
 
-.searchboxinput {
-  display: flex;
-  box-shadow: none;
-  border: 2px silver;
-  font-size: 20px;
-  justify-content: center;
-  align-items: center;
+// override of mat input wrapper class
+// :host ::ng-deep .mat-form-field-wrapper {
+//   margin: 0;
+//   padding: 0;
+//   background-color: rgba(230, 227, 227, 0.856);
+//   opacity: 0.8;
+// }
 
-  padding-left: 30px;
-}
-.searchicon {
-  margin-bottom: 20px;
-  color: rgb(92, 91, 91);
-}
-
-input {
-  outline: none;
+.search {
+  background-color: #fff;
+  padding: 3px;
+  padding-left: 15px;
+  width: 100%;
+  border-radius: 5px;
   border: none;
-  margin-bottom: 20px;
-  height: 10px;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
 }
-input:placeholder-shown {
-  font-size: 18px;
+input.input:focus {
+  outline-width: 0;
 }
-div.searchbar:focus {
-  box-shadow: 0 2px 12px 0 rgba(88, 49, 49, 0.16),
-    0 0 0 1px rgba(29, 16, 145, 0.08);
+input {
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  border-color: #fff;
+  font-size: 16px;
 }
 
-.div-profile {
-  height: 100px;
-  width: 280px;
-  // overflow-y: auto;
-  // overflow-x: hidden;
+mat-icon {
+  color: #fff;
 }
-
-.div-signout {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.mat-card {
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 30px;
+  border-radius: 5px;
 }
-.signout-button {
-  border: 1px solid gray;
+.btn-upload {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
-.image-upload > input {
-  display: none;
+.btn-upload input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  z-index: 0;
+  max-width: 100%;
+  height: 100%;
+  display: block;
 }
-div.mat-menu-content {
-  z-index: 3000;
+.btn-upload .btn {
+  padding: 8px 20px;
+  background: #c5b86f;
+  border: 1px solid #2e6da4;
+  color: #fff;
+  border: 0;
 }
-.div-profilepic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 130px;
-  width: auto;
-  margin-top: 12px;
-}
-.mat-menu {
-  z-index: -1;
-}
-.mat-menu-content {
-  background-color: "red" !important;
-}
-.profile-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-h3 {
-  display: flex;
-  justify-content: center;
-}
-.last-icon {
-  display: flex;
-  justify-content: flex-end;
+.btn-upload:hover .btn {
+  padding: 8px 20px;
+  background: #95b464;
+  color: #fff;
+  border: 0;
 }

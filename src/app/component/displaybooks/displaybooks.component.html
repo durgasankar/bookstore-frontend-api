@@ -2,28 +2,47 @@
   <div class="container">
     <div class="title">
       Books
-      <span style="font-size: 15px; color: rgb(139, 136, 136);"
-        >({{ size }} items)</span
+      <span
+        style="
+          font-size: 15px;
+          font-family: Lato, Regular;
+          color: rgb(139, 136, 136);
+        "
+        >({{ size }} &nbsp;Items)</span
       >
     </div>
     <div class="sort-choice">
       <form>
-        <mat-form-field appearance="outline">
-          <mat-label>sort by relevance</mat-label>
+        <mat-form-field style="width: 10em;" appearance="outline">
+          <mat-label style="font-family: Lato, Regular; font-size: 15px;"
+            >sort by relevance</mat-label
+          >
           <mat-select
             [(value)]="selectedOption"
             (selectionChange)="onclicksort()"
           >
-            <mat-option value="none">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="none"
+            >
               sort by relevance
             </mat-option>
-            <mat-option value="Price:High To Low">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="Price:High To Low"
+            >
               Price:High To Low
             </mat-option>
-            <mat-option value="Price:Low To High">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="Price:Low To High"
+            >
               Price:Low To High
             </mat-option>
-            <mat-option value="By Book Name">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="By Book Name"
+            >
               By Book Name
             </mat-option>
           </mat-select>
@@ -32,7 +51,13 @@
     </div>
   </div>
   <div class="addbook" *ngIf="isSeller">
-    <button class="btn-addbook" (click)="openDialog()">ADD BOOK</button>
+    <button
+      class="btn-addbook"
+      style="border-radius: 10px; outline: none;"
+      (click)="openDialog()"
+    >
+      ADD BOOK
+    </button>
   </div>
   <div class="list-books">
     <div
@@ -45,9 +70,12 @@
       "
       fxLayout="{{ view }}"
       [fxLayoutAlign]="center"
-      fxFlexOffset="4"
+      fxFlexOffset="3"
     >
-      <mat-card matTooltip="{{ book.bookDetails }}">
+      <mat-card
+        style="height: 21.5em; width: 233px;"
+        matTooltip="{{ book.bookDetails }}"
+      >
         <mat-card-title
           *ngIf="isSeller"
           (click)="openImageDialog(book.bookId)"
@@ -55,8 +83,8 @@
           ><img
             src="{{ book.bookImage }}"
             style="
-              height: 150px;
-              width: 120px;
+              height: 135px;
+              width: 105px;
               margin-left: 55px;
               margin-right: 55px;
               padding-top: 20px;
@@ -64,8 +92,8 @@
             "
           />
         </mat-card-title>
-        <mat-card-title *ngIf="isUser" matTooltip="Book Image"
-          ><img
+        <mat-card-title *ngIf="isUser" matTooltip="Book Image">
+          <img
             src="{{ book.bookImage }}"
             style="
               height: 150px;
@@ -78,41 +106,72 @@
           />
         </mat-card-title>
 
-        <mat-card-content
+        <mat-card-content style="width: 17em;"
           ><div class="bookname">{{ book.bookName }}</div>
           <div class="authorname">by {{ book.authorName }}</div>
           <div class="price">Rs. {{ book.price }}</div>
           <div
             class="availablity"
-            style="font-size: large;"
+            style="font-size: large; color: red;"
             *ngIf="!book.quantity"
           >
             Out Of stock
           </div>
-          <div class="availablity" style="color: blue;" *ngIf="book.quantity">
-            Available Books: {{ book.quantity }}
+          <div
+            class="availablity"
+            style="color: rgb(163, 43, 6);"
+            *ngIf="book.quantity < 5 && book.quantity; else elsecondition"
+          >
+            Only {{ book.quantity }} left hurry up
           </div>
+          <ng-template #elsecondition>
+            <div
+              class="availablity"
+              style="color: rgb(2, 110, 2);"
+              *ngIf="book.quantity"
+            >
+              Available Books: {{ book.quantity }}
+            </div>
+          </ng-template>
           <div class="cart-buttons" *ngIf="isUser && book.quantity">
             <div>
               <button
-                [style.background-color]="toggle ? 'green' : 'red'"
+                style="outline: none; border-radius: 5px;"
                 class="addtobag"
                 (click)="addToBag(book.bookId, book.quantity)"
+                #clickState
               >
                 ADD TO BAG
               </button>
             </div>
-            <div><button class="wishlist">WISHLIST</button></div>
+            <div>
+              <button
+                style="outline: none; border-radius: 5px;"
+                [style.background-color]="toggle ? 'white' : 'red'"
+                class="wishlist"
+              >
+                WISHLIST
+              </button>
+            </div>
           </div>
+
           <div class="cart-buttons" *ngIf="isSeller">
             <div>
-              <button class="addtobag" (click)="deleteBook(book.bookId)">
-                DELETE BOOK
+              <button
+                style="outline: none; border-radius: 5px;"
+                class="addtobag"
+                (click)="deleteBook(book.bookId)"
+              >
+                DELETE
               </button>
             </div>
             <div>
-              <button class="wishlist" (click)="openDialog2()">
-                UPDATE BOOK
+              <button
+                style="outline: none; border-radius: 5px;"
+                class="wishlist"
+                (click)="openDialog2()"
+              >
+                UPDATE
               </button>
             </div>
           </div>

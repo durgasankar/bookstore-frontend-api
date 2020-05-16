@@ -1,5 +1,5 @@
-<app-toolbar></app-toolbar>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<!-- <app-toolbar></app-toolbar>
+<mat-horizontal-stepper linear="true" #stepper>
   <mat-step [stepControl]="customerForm">
     <ng-template matStepLabel>Fill Customer Details</ng-template>
     <div class="main-conatiner">
@@ -20,11 +20,11 @@
                 <div>
                   <img
                     src="{{ element.bookImage }}"
-                    style="height: 130px; width: 100px; margin-right: 20px;"
+                    style="height: 60px; width: 60px; margin-right: 20px;"
                   />
                 </div>
 
-                <div style="margin-top: 115px;">{{ element.bookName }}</div>
+                <div style="margin-top: 45px;">{{ element.bookName }}</div>
               </div>
             </td>
           </ng-container>
@@ -57,8 +57,8 @@
                   <div style="height: 20px; width: 20px;">
                     <button
                       style="
-                        height: 30px;
-                        width: 30px;
+                        height: 25px;
+                        width: 25px;
                         background-color: black;
                       "
                       (click)="increaseQuantity(element)"
@@ -78,8 +78,8 @@
                   <div>
                     <button
                       style="
-                        height: 30px;
-                        width: 30px;
+                        height: 25px;
+                        width: 25px;
                         background-color: black;
                       "
                       (click)="decreseQuantity(element)"
@@ -115,7 +115,7 @@
                     matTooltip="Remove From Bag"
                     ><img
                       (click)="removeCartBook(element.bookId)"
-                      style="height: 30px; width: 30px;"
+                      style="height: 30px; width: 30px; margin-bottom: 20px;"
                       src="assets\x-button.png"
                   /></span>
                 </div>
@@ -136,11 +136,15 @@
     </div>
     <div class="form-conatiner">
       <div *ngIf="!cosForm">
-        <mat-card-title>Customer Details</mat-card-title>
+        <mat-card-title style="font-size: 20px;"
+          >Customer Details</mat-card-title
+        >
       </div>
       <mat-card *ngIf="cosForm" fxLayoutAlign="center center" fxLayout="column">
         <div>
-          <mat-card-title>Customer Details</mat-card-title>
+          <mat-card-title style="font-size: 20px;"
+            >Customer Details</mat-card-title
+          >
         </div>
         <form
           *ngIf="cosForm"
@@ -175,6 +179,7 @@
               <div fxFlex="45">
                 <mat-form-field appearance="outline">
                   <input
+                    type="number"
                     id="contact"
                     matInput
                     formControlName="contact"
@@ -200,11 +205,11 @@
                 </span>
               </div>
             </div>
-
             <div class="name-contact">
               <div fxFlex="45">
                 <mat-form-field appearance="outline">
                   <input
+                    type="number"
                     id="pinCode"
                     matInput
                     formControlName="pinCode"
@@ -279,6 +284,33 @@
                 </mat-form-field>
               </div>
             </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <mat-radio-group
+                matInput
+                style="
+                  display: flex;
+                  align-self: center;
+                  justify-content: space-between;
+                "
+                formControlName="type"
+              >
+                <mat-radio-button style="margin-right: 20px;" value="male"
+                  >Home</mat-radio-button
+                >
+                <mat-radio-button style="margin-right: 20px;" value="female"
+                  >Work</mat-radio-button
+                >
+                <mat-radio-button style="margin-right: 20px;" value="other"
+                  >Other</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
           </mat-card-content>
         </form>
       </mat-card>
@@ -294,24 +326,57 @@
       </div>
 
       <div *ngIf="!cosForm" class="ch-btn">
-        <button (click)="openCustomerDeatilsForm()">Place Order</button>
-      </div>
-      <!-- <div *ngIf="cosForm" class="ch-btn">
         <button
-          [disabled]="!customerForm.valid"
-          (click)="onclickSubmitCustomer()"
+          style="border-radius: 10px; outline: none;"
+          (click)="openCustomerDeatilsForm()"
         >
-          Checkout
+          Place Order
         </button>
-      </div> -->
+      </div>
       <div *ngIf="cosForm" class="ch-btn">
-        <button [disabled]="!customerForm.valid" mat-button matStepperNext>
+        <button
+          style="border-radius: 10px; outline: none;"
+          [disabled]="!customerForm.valid"
+          (click)="addCustomerInfo()"
+          mat-button
+          matStepperNext
+        >
           Next
         </button>
       </div>
     </div>
   </mat-step>
+  <mat-step>
+    <div fxLayoutAlign="center center" fxLayout="column">
+      <ng-template matStepLabel>Payment</ng-template>
 
+      <div
+        style="margin-top: 100px;"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <mat-radio-group matInput>
+          <mat-radio-button value="male">Cash On Delivery</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+          margin-top: 400px;
+        "
+      >
+        <button
+          style="border-radius: 10px; outline: none;"
+          mat-button
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Confirm Order</ng-template>
     <div fxLayoutAlign="center center" fxLayout="column">
@@ -319,7 +384,7 @@
         <span>Order Summary</span>
       </div>
       <div class="summery-subtitle" fxLayoutAlign="center center">
-        <span>* Pelase take a moment to review your order.</span>
+        <span>* Please take a moment to review your order.</span>
       </div>
       <div class="summery-table">
         <div class="summery-description" fxLayoutAlign="start center">
@@ -352,10 +417,344 @@
         </div>
       </div>
       <div fxLayoutAlign="start center">
-        <button class="cnf-btn" (click)="onclickSubmitCustomer()">
+        <button
+          class="cnf-btn"
+          style="border-radius: 10px; outline: none;"
+          (click)="onclickSubmitCustomer()"
+        >
           Confirm Order
         </button>
       </div>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+<div class="bottom" style="background-color: black;">
+  Copyright &copy; 2020, Bookstore #DI Team. All rights reserved
+</div> -->
+
+<app-toolbar></app-toolbar>
+<mat-horizontal-stepper linear="true" #stepper>
+  <mat-step [stepControl]="customerForm">
+    <ng-template matStepLabel>Fill Customer Details</ng-template>
+    <!--Main Container-->
+    <div class="main-conatiner">
+      <div class="title">
+        My Cart
+        <span style="font-size: 18px;">({{ size }})</span>
+      </div>
+      <div *ngFor="let order of orders">
+        <div class="cart-book">
+          <div class="book-img">
+            <img
+              src="{{ order.bookImage }}"
+              style="height: 85px; width: 65px; margin-right: 20px;"
+            />
+          </div>
+          <div class="book-info">
+            <div style="height: 17px; width: auto;">
+              <span class="bookname">{{ order.bookName }}</span>
+            </div>
+            <div class="bookPrice">Rs.&nbsp; {{ order.price }}</div>
+          </div>
+        </div>
+        <div class="qty-buttons">
+          <button class="btn" (click)="increaseQuantity(order)">+</button>
+          <div class="qty">{{ order.quantity }}</div>
+          <button class="btn" (click)="decreseQuantity(order)">-</button>
+          <button
+            mat-button
+            class="btn-remove"
+            (click)="removeCartBook(order.bookId)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!cosForm" class="place-btn">
+        <button mat-button class="p-btn" (click)="openCustomerDeatilsForm()">
+          PLACE ORDER
+        </button>
+      </div>
+    </div>
+    <!--Costomer Details Form -->
+    <div class="main-conatiner">
+      <div *ngIf="!cosForm">
+        <mat-card-title style="font-size: 20px;"
+          >Customer Details</mat-card-title
+        >
+      </div>
+      <mat-card *ngIf="cosForm" fxLayout="column">
+        <div>
+          <mat-card-title style="font-size: 20px;"
+            >Customer Details</mat-card-title
+          >
+        </div>
+        <form
+          *ngIf="cosForm"
+          [formGroup]="customerForm"
+          (ngSubmit)="(customerForm.valid)"
+          noval
+        >
+          <mat-card-content>
+            <div class="name-contact">
+              <div fxFlex="45">
+                <mat-form-field appearance="outline">
+                  <input
+                    id="customerName"
+                    matInput
+                    formControlName="customerName"
+                    placeholder="Name"
+                    autocomplete="off"
+                    required
+                  />
+                </mat-form-field>
+                <span style="font-size: 15px; margin-bottom: 2px;">
+                  <mat-error
+                    *ngIf="f.customerName.touched && f.customerName.errors"
+                    class="invalid-feedback"
+                  >
+                    <mat-error *ngIf="f.customerName.errors.required">
+                      Name is required</mat-error
+                    >
+                  </mat-error>
+                </span>
+              </div>
+              <div fxFlex="45">
+                <mat-form-field appearance="outline">
+                  <input
+                    type="number"
+                    id="contact"
+                    matInput
+                    formControlName="contact"
+                    placeholder="Phone number"
+                    autocomplete="off"
+                    required
+                  />
+                </mat-form-field>
+                <span style="font-size: 15px; margin-top: 10px;">
+                  <mat-error
+                    *ngIf="f.contact.touched && f.contact.errors"
+                    class="invalid-feedback"
+                  >
+                    <mat-error *ngIf="f.contact.errors.required">
+                      *phone number is required</mat-error
+                    >
+                    <mat-error
+                      *ngIf="!f.contact.errors.required && f.contact.errors"
+                    >
+                      *phone must be 10 digit</mat-error
+                    >
+                  </mat-error>
+                </span>
+              </div>
+            </div>
+            <div class="name-contact">
+              <div fxFlex="45">
+                <mat-form-field appearance="outline">
+                  <input
+                    type="number"
+                    id="pinCode"
+                    matInput
+                    formControlName="pinCode"
+                    placeholder="Pincode"
+                    autocomplete="off"
+                    required
+                  />
+                </mat-form-field>
+                <span>
+                  <mat-error *ngIf="f.pinCode.touched && f.pinCode.errors">
+                    <mat-error *ngIf="f.pinCode.errors.required">
+                      Required
+                    </mat-error>
+                    <mat-error
+                      *ngIf="!f.pinCode.errors.required && f.pinCode.errors"
+                    >
+                      Invalid PinCode
+                    </mat-error>
+                  </mat-error>
+                </span>
+              </div>
+              <div fxFlex="45">
+                <mat-form-field appearance="outline">
+                  <input
+                    id="locality"
+                    matInput
+                    formControlName="locality"
+                    placeholder="Locality"
+                    autocomplete="off"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="address">
+              <mat-form-field class="address-field" appearance="outline">
+                <input
+                  id="address"
+                  matInput
+                  formControlName="address"
+                  placeholder="Address"
+                  autocomplete="off"
+                  required
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="name-contact" style="margin-top: 15px;">
+              <div fxFlex="45">
+                <mat-form-field appearance="outline">
+                  <input
+                    id="city"
+                    matInput
+                    formControlName="city"
+                    placeholder="City"
+                    autocomplete="off"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <div fxFlex="45" class="name-contact">
+                <mat-form-field appearance="outline">
+                  <input
+                    id="landMark"
+                    matInput
+                    formControlName="landMark"
+                    placeholder="Landmark"
+                    autocomplete="off   "
+                    required
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <!--Country-->
+            <div class="country">
+              <mat-form-field appearance="outline">
+                <input
+                  id="country"
+                  matInput
+                  formControlName="country"
+                  placeholder="country"
+                  autocomplete="off"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <mat-radio-group
+                matInput
+                style="
+                  display: flex;
+                  align-self: center;
+                  justify-content: space-between;
+                "
+                formControlName="type"
+              >
+                <mat-radio-button style="margin-right: 20px;" value="male"
+                  >Home</mat-radio-button
+                >
+                <mat-radio-button style="margin-right: 20px;" value="female"
+                  >Work</mat-radio-button
+                >
+                <mat-radio-button style="margin-right: 20px;" value="other"
+                  >Other</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
+          </mat-card-content>
+          <div *ngIf="!openSummery" class="place-btn">
+            <button mat-button (click)="addCustomerInfo()" class="p-btn">
+              CONTINUE
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+    <!--Order Summery-->
+    <div *ngIf="!openSummery" class="main-conatiner">
+      <div>
+        <mat-card-title style="font-size: 20px;">Order Summery</mat-card-title>
+      </div>
+    </div>
+    <div *ngIf="openSummery" class="main-conatiner">
+      <mat-card-title style="font-size: 20px;">Order Summery</mat-card-title>
+      <div
+        style="margin-top: 40px; margin-bottom: 30px;"
+        *ngFor="let order of orders"
+      >
+        <div class="cart-book">
+          <div class="book-img">
+            <img
+              src="{{ order.bookImage }}"
+              style="height: 85px; width: 65px; margin-right: 20px;"
+            />
+          </div>
+          <div class="book-info">
+            <div style="height: 17px; width: auto;">
+              <span class="bookname">{{ order.bookName }}</span>
+            </div>
+            <div class="bookqty2">Rs.&nbsp; {{ order.price }}</div>
+            <div class="bookqty2">{{ order.quantity }} Pcs</div>
+            <div class="bookPrice">Total:&nbsp;Rs.&nbsp;{{ order.total }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="finalAmount">
+        Final Amount&nbsp;&nbsp; Rs.{{ finalAmount }}
+      </div>
+
+      <!--CheckOut Button-->
+      <div class="place-btn">
+        <button
+          mat-button
+          matStepperNext
+          (click)="addCustomerInfo()"
+          class="p-btn"
+        >
+          CHECKOUT
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step>
+    <div fxLayoutAlign="center center" fxLayout="column">
+      <ng-template matStepLabel>Payment</ng-template>
+
+      <div
+        style="margin-top: 100px;"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <mat-radio-group matInput>
+          <mat-radio-button value="male">Cash On Delivery</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="place-btn" style="margin-top: 400px;" class="p-btn">
+        <button
+          style="
+            background-color: rgba(9, 9, 207, 0.863);
+            color: whitesmoke;
+            width: 161px;
+            height: 45px;
+            outline: none;
+          "
+          mat-button
+          matStepperNext
+          (click)="onclickSubmitCustomer()"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<div class="bottom" style="background-color: black;">
+  Copyright &copy; 2020, Bookstore #DI Team. All rights reserved
+</div>

@@ -57,12 +57,22 @@ export class UserService {
       { responseType: "text" }
     );
   }
-
+  addAddress(address: any): Observable<any> {
+    return this.httpservice.post(
+      `${environment.userApiUrl}/${environment.addAddress}`,
+      address,
+      { headers: new HttpHeaders().set("token", localStorage.token) }
+    );
+  }
   setQueryParam(message: any) {
     this.queryParam.next({ id: message });
   }
 
   getQueryParam(): Observable<any> {
     return this.queryParam.asObservable();
+  }
+
+  isLoggedIn() {
+    return !!sessionStorage.token;
   }
 }
