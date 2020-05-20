@@ -1,9 +1,14 @@
-<div class="container">
-  <div style="width: 100%;">
-    <app-toolbar flexLayout="row"></app-toolbar>
+<body>
+  <div class="container">
+    <div style="width: 100%;" style="height: 11%;">
+      <app-toolbar flexLayout="row"></app-toolbar>
+    </div>
+    <div class="dashboard-content" style="height: 84%;">
+      <router-outlet [id]="id"></router-outlet>
+      <!-- <app-displaybooks></app-displaybooks> -->
+    </div>
+    <div class="bottom" style="height: 5%;">
+      Copyright &copy; 2020, Bookstore #DI Team. All rights reserved
+    </div>
   </div>
-  <div class="dashboard-content">
-    <router-outlet [id]="id"></router-outlet>
-    <!-- <app-displaybooks></app-displaybooks> -->
-  </div>
-</div>
+</body>

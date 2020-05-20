@@ -20,11 +20,9 @@ export class UploadBookimageComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.bookcode = this.data.bookCode;
-    console.log("sddsdsdsdsdsds", this.data.bookId);
   }
 
   ngOnInit() {
-    // console.log("sddsdsdsdsdsds", );
     this.imageForm = this.formBuilder.group({
       name: [""],
       imageFile: [""],

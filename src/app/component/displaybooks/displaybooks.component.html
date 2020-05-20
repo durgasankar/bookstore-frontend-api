@@ -2,28 +2,50 @@
   <div class="container">
     <div class="title">
       Books
-      <span style="font-size: 15px; color: rgb(139, 136, 136);"
-        >({{ size }} items)</span
+      <span
+        style="
+          font-size: 15px;
+          font-family: Lato, Regular;
+          color: rgb(139, 136, 136);
+        "
+        >({{ size }} &nbsp;Items)</span
       >
     </div>
     <div class="sort-choice">
       <form>
-        <mat-form-field appearance="outline">
-          <mat-label>sort by relevance</mat-label>
+        <mat-form-field
+          style="width: 12em; margin-top: 10px;"
+          appearance="outline"
+        >
+          <mat-label style="font-family: Lato, Regular; font-size: 12px;"
+            >sort by relevance</mat-label
+          >
           <mat-select
             [(value)]="selectedOption"
             (selectionChange)="onclicksort()"
           >
-            <mat-option value="none">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="none"
+            >
               sort by relevance
             </mat-option>
-            <mat-option value="Price:High To Low">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="Price:High To Low"
+            >
               Price:High To Low
             </mat-option>
-            <mat-option value="Price:Low To High">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="Price:Low To High"
+            >
               Price:Low To High
             </mat-option>
-            <mat-option value="By Book Name">
+            <mat-option
+              style="font-family: Lato, Regular; font-size: 15px;"
+              value="By Book Name"
+            >
               By Book Name
             </mat-option>
           </mat-select>
@@ -32,7 +54,13 @@
     </div>
   </div>
   <div class="addbook" *ngIf="isSeller">
-    <button class="btn-addbook" (click)="openDialog()">ADD BOOK</button>
+    <button
+      class="btn-addbook"
+      style="border-radius: 10px; outline: none;"
+      (click)="openDialog()"
+    >
+      ADD BOOK
+    </button>
   </div>
   <div class="list-books">
     <div
@@ -45,9 +73,12 @@
       "
       fxLayout="{{ view }}"
       [fxLayoutAlign]="center"
-      fxFlexOffset="4"
+      fxFlexOffset="3"
     >
-      <mat-card matTooltip="{{ book.bookDetails }}">
+      <mat-card
+        style="height: 21.5em; width: 233px;"
+        matTooltip="{{ book.bookDetails }}"
+      >
         <mat-card-title
           *ngIf="isSeller"
           (click)="openImageDialog(book.bookId)"
@@ -55,8 +86,8 @@
           ><img
             src="{{ book.bookImage }}"
             style="
-              height: 150px;
-              width: 120px;
+              height: 135px;
+              width: 105px;
               margin-left: 55px;
               margin-right: 55px;
               padding-top: 20px;
@@ -64,8 +95,8 @@
             "
           />
         </mat-card-title>
-        <mat-card-title *ngIf="isUser" matTooltip="Book Image"
-          ><img
+        <mat-card-title *ngIf="isUser" matTooltip="Book Image">
+          <img
             src="{{ book.bookImage }}"
             style="
               height: 150px;
@@ -78,41 +109,128 @@
           />
         </mat-card-title>
 
-        <mat-card-content
-          ><div class="bookname">{{ book.bookName }}</div>
+        <mat-card-content style="width: 17em;">
+          <div class="out-of-stock" *ngIf="!book.quantity">
+            Out Of stock
+          </div>
+          <div class="bookname">{{ book.bookName }}</div>
           <div class="authorname">by {{ book.authorName }}</div>
           <div class="price">Rs. {{ book.price }}</div>
-          <div
+          <!-- <div
             class="availablity"
-            style="font-size: large;"
+            style="font-size: large; color: red;"
             *ngIf="!book.quantity"
           >
             Out Of stock
+          </div> -->
+          <div
+            class="availablity"
+            style="color: rgb(163, 43, 6);"
+            *ngIf="book.quantity < 5 && book.quantity; else elsecondition"
+          >
+            Only {{ book.quantity }} left hurry up
           </div>
-          <div class="availablity" style="color: blue;" *ngIf="book.quantity">
-            Available Books: {{ book.quantity }}
-          </div>
-          <div class="cart-buttons" *ngIf="isUser && book.quantity">
+          <ng-template #elsecondition>
+            <div
+              class="availablity"
+              style="color: rgb(2, 110, 2);"
+              *ngIf="book.quantity"
+            >
+              Available Books: {{ book.quantity }}
+            </div>
+            <div style="height: 26px;" *ngIf="!book.quantity && isSeller"></div>
+          </ng-template>
+          <div
+            class="cart-buttons"
+            *ngIf="isUser && book.quantity && value[book.bookId] != book.bookId"
+          >
             <div>
               <button
-                [style.background-color]="toggle ? 'green' : 'red'"
                 class="addtobag"
                 (click)="addToBag(book.bookId, book.quantity)"
+                #clickState
+                mat-button
               >
                 ADD TO BAG
               </button>
             </div>
-            <div><button class="wishlist">WISHLIST</button></div>
+            <div>
+              <button
+                style="border: 1px solid #9d9d9d; outline: none;"
+                [style.background-color]="toggle ? 'white' : 'red'"
+                class="wishlist"
+                mat-button
+                (click)="addToWishlist(book.bookId)"
+              >
+                WISHLIST
+              </button>
+            </div>
           </div>
+
+          <!--Added to bag-->
+
+          <div
+            class="addedbtn"
+            *ngIf="isUser && book.quantity && value[book.bookId] == book.bookId"
+          >
+            <button
+              style="
+                height: 32px;
+                width: 191px;
+                background-color: #3371b5;
+                border-radius: 2px;
+                color: whitesmoke;
+                text-align: center;
+              "
+              mat-button
+            >
+              ADDED TO BAG
+            </button>
+          </div>
+
+          <div class="addedbtn" *ngIf="isUser && !book.quantity">
+            <button
+              style="
+                height: 34px;
+                width: 191px;
+                border-radius: 0px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 10px;
+                border: 1px solid #9d9d9d;
+              "
+              mat-button
+              (click)="addToWishlist(book.bookId)"
+            >
+              WISHLIST
+            </button>
+          </div>
+
+          <!--seller butons-->
           <div class="cart-buttons" *ngIf="isSeller">
             <div>
-              <button class="addtobag" (click)="deleteBook(book.bookId)">
-                DELETE BOOK
+              <button
+                style="outline: none; border-radius: 0px;"
+                class="addtobag"
+                (click)="deleteBook(book.bookId)"
+                mat-button
+              >
+                DELETE
               </button>
             </div>
             <div>
-              <button class="wishlist" (click)="openDialog2()">
-                UPDATE BOOK
+              <button
+                style="
+                  outline: none;
+                  border-radius: 0px;
+                  border: 1px solid #9d9d9d;
+                "
+                class="update"
+                (click)="openDialog2()"
+                mat-button
+              >
+                UPDATE
               </button>
             </div>
           </div>
@@ -121,10 +239,16 @@
     </div>
   </div>
   <div>
-    <div class="paginator">
+    <div class="paginator" align="center">
       <pagination-controls
         (pageChange)="page = $event"
         id="first"
+        [responsive]="responsive"
+        [autoHide]="autoHide"
+        [maxSize]="maxSize"
+        [directionLinks]="directionLinks"
+        [previousLabel]="labels.previousLabel"
+        [nextLabel]="labels.nextLabel"
       ></pagination-controls>
     </div>
   </div>

@@ -16,6 +16,7 @@ body {
   box-sizing: border-box;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-y: auto;
+  overflow-x: hidden;
   min-height: 100%;
   height: 100%;
   width: 100%;
@@ -48,4 +49,15 @@ body {
   min-height: inherit;
   max-height: inherit;
   background-color: lightyellow;
+}
+
+// overriding default ngx paginator properties
+element.style {
+}
+.ngx-pagination .current {
+  background: #8f2b2f !important;
+}
+.ngx-pagination .disabled {
+  font-size: x-large;
+  padding: 0px 15px;
 }

@@ -7,10 +7,13 @@ import {
   MatSnackBar,
   MatTableDataSource,
   MatPaginator,
+  MatDialog,
 } from "@angular/material";
 import { CartServiceService } from "src/app/shared/service/cart-service.service";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { Costomer } from "src/app/shared/model/costomer.model";
+import { UserLoginComponent } from "../authentication/user-login/user-login.component";
+import { UserService } from "src/app/shared/service/user.service";
 
 @Component({
   selector: "app-books-cart",
@@ -24,16 +27,21 @@ export class BooksCartComponent implements OnInit {
   size: number;
   page = 1;
   cosForm = false;
+  openSummery = false;
   quantity = 1;
+  currentpage = "cart";
   customerForm: FormGroup;
+  isCartEmpty = false;
   cusomerDetails = new Costomer();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   displayedColumns: string[] = ["bookName", "price", "quantity", "total"];
   constructor(
+    private dialog: MatDialog,
     private matSnackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private cartService: CartServiceService,
+    private userservice: UserService,
     private route: Router
   ) {
     this.cartService.autoRefresh$.subscribe(() => {
@@ -60,7 +68,9 @@ export class BooksCartComponent implements OnInit {
       locality: [""],
       address: ["", [Validators.required]],
       city: ["", [Validators.required]],
+      country: [""],
       landMark: ["", [Validators.required]],
+      type: ["", Validators.required],
     });
     this.cartService.autoRefresh$.subscribe(() => {
       this.getOrderList();
@@ -77,7 +87,12 @@ export class BooksCartComponent implements OnInit {
   getOrderList() {
     this.cartService.getCartList().subscribe((message) => {
       this.orders = message.orders;
+
       this.size = this.orders.length;
+      if (this.orders.length == 0) {
+        console.log("cart empty");
+        this.isCartEmpty = true;
+      }
       console.log(message.orders.length);
       this.orderList = new MatTableDataSource(this.orders);
       const price = this.orders.map((i) => i.total);
@@ -87,6 +102,7 @@ export class BooksCartComponent implements OnInit {
   }
   removeCartBook(bookId) {
     this.cartService.removeFromeBag(bookId).subscribe((message) => {
+      sessionStorage.removeItem(bookId);
       this.matSnackBar.open("Book Removed From Cart", "OK", {
         duration: 4000,
       });
@@ -136,9 +152,24 @@ export class BooksCartComponent implements OnInit {
       });
     }
   }
-
+  addCustomerInfo() {
+    this.openSummery = true;
+    this.userservice
+      .addAddress(this.customerForm.value)
+      .subscribe((message) => {
+        this.matSnackBar.open("Address Added Successfully", "OK", {
+          duration: 4000,
+        });
+      });
+  }
   openCustomerDeatilsForm() {
-    this.cosForm = true;
+    let currentPage = "cart";
+    if (localStorage.isLogin == undefined && localStorage.isLogin == null) {
+      this.cosForm = false;
+      this.route.navigate(["/login"]);
+    } else {
+      this.cosForm = true;
+    }
   }
 
   onclickSubmitCustomer() {

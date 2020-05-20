@@ -8,7 +8,18 @@
   left: 0;
   margin: auto;
 }
-
+.rowthreed {
+  align-content: center;
+  font-style: unset;
+  font-size: 10vp;
+  background-color: rgba(131, 4, 4, 0.829);
+  color: white;
+  font-variant: normal;
+  text-align: center;
+  font-family: Lato, Regular;
+  text-transform: capitalize;
+  text-decoration-style: wavy;
+}
 .form-items {
   padding: 20px;
   padding-bottom: 20px;
@@ -26,11 +37,12 @@
   margin: 0px 0px 0px 0px;
   align-items: center;
   justify-content: center;
+  background-color: whitesmoke;
 }
 
 .divider {
   margin-top: 10 px !important ;
-  background-color: mediumslateblue;
+  background-color: rgba(87, 25, 25, 0.904);
   margin: 20px 10px;
   width: auto;
   height: 50px;

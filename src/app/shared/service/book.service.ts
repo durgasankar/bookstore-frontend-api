@@ -26,22 +26,23 @@ export class BookService {
   }
   constructor(private http: HttpClient, private httpservice: HttpService) {}
   getBookList(): Observable<any> {
-    return this.httpservice.get(
-      `${environment.bookApiUrl}/${environment.getBooksList}`,
-      { headers: new HttpHeaders().set("token", sessionStorage.token) }
+    return this.httpservice.getWithoutHeader(
+      `${environment.bookApiUrl}/${environment.getBooksList}`
     );
   }
   getSellerBookList(): Observable<any> {
     return this.httpservice.get(
       `${environment.bookApiUrl}/${environment.getSellerBookList}`,
-      { headers: new HttpHeaders().set("token", sessionStorage.token) }
+      {
+        headers: new HttpHeaders().set("token", localStorage.token),
+      }
     );
   }
 
   addBook(book: Book): Observable<any> {
     return this.httpservice
       .post(`${environment.bookApiUrl}/${environment.addbook}`, book, {
-        headers: new HttpHeaders().set("token", sessionStorage.token),
+        headers: new HttpHeaders().set("token", localStorage.token),
       })
       .pipe(
         tap(() => {
@@ -56,7 +57,7 @@ export class BookService {
         `${environment.bookApiUrl}/${environment.addBookImage}?bookId=${bookId}`,
         formData,
         {
-          headers: new HttpHeaders().set("token", sessionStorage.token),
+          headers: new HttpHeaders().set("token", localStorage.token),
           reportProgress: true,
           observe: "events",
         }
@@ -89,10 +90,9 @@ export class BookService {
 
   deleteBook(bookId): Observable<any> {
     return this.httpservice
-      .delete(
-        `${environment.bookApiUrl}/${environment.deleteBook}?bookId=${bookId}`,
-        { headers: new HttpHeaders().set("token", sessionStorage.token) }
-      )
+      .delete(`${environment.bookApiUrl}/${bookId}`, {
+        headers: new HttpHeaders().set("token", localStorage.token),
+      })
       .pipe(
         tap(() => {
           this._autoRefresh$.next();

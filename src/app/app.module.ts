@@ -49,6 +49,7 @@ import { BookSearchPipe } from "./pipe/book-search.pipe";
 import { NgxPaginationModule } from "ngx-pagination";
 import { SortbypricePipe } from "./pipe/sortbyprice.pipe";
 import { OrderplaceGreentingComponent } from "./component/orderplace-greenting/orderplace-greenting.component";
+import { AuthGuard } from "./component/authentication/auth.guard";
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,11 +101,12 @@ import { OrderplaceGreentingComponent } from "./component/orderplace-greenting/o
     MatBadgeModule,
   ],
   entryComponents: [
+    UserLoginComponent,
     AddbookComponent,
     UpdateBookComponent,
     UploadBookimageComponent,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 // tslint:disable-next-line: one-line
